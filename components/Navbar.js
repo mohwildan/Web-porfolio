@@ -4,6 +4,8 @@ import Link from "next/link";
 import styled from "styled-components";
 function Navbar() {
   const [click, setClick] = useState(false);
+
+  const closeMenuMobile = () => setClick(false)
   const context = useContext(AppContext);
   return (
     <NavHeader>
@@ -14,22 +16,22 @@ function Navbar() {
           </NavLogo>
         </Link>
         <NavMenu click={click}>
-          <NavList>
+          <NavList onClick={closeMenuMobile}>
             <Link href="/">
               <NavItem>Home</NavItem>
             </Link>
           </NavList>
-          <NavList>
+          <NavList onClick={closeMenuMobile}>
             <Link href="/AboutMe">
               <NavItem>About</NavItem>
             </Link>
           </NavList>
-          <NavList>
+          <NavList onClick={closeMenuMobile}>
             <Link href="/">
               <NavItem>Porfolio</NavItem>
             </Link>
           </NavList>
-          <NavList>
+          <NavList onClick={closeMenuMobile}>
             <Link href="/">
               <NavItem>Contact</NavItem>
             </Link>
@@ -108,9 +110,26 @@ const NavItem = styled.a`
   letter-spacing: 0.145em;
   transition: opacity 0.3s;
   font-size: clamp(1rem, 0.9107rem + 0.2857vw, 1.125rem);
+  position: relative;
 
   &:hover {
     opacity: 1;
+  }
+
+  &::after{
+      content: "";
+    position: absolute;
+    width: 0%;
+    height: 3px;
+    background: #dbde3d;
+    left: 50%;
+    bottom: 0;
+    transition: 0.3s;
+  }
+
+  &:hover::after{
+      width: 100%;
+      left: 0;
   }
 
   @media (max-width: 768px) {
@@ -125,11 +144,11 @@ const NavToggle = styled.div`
   }
 `;
 const NavToggleList = styled.div`
-  width: clamp(2.5rem, 1.0625rem + 3vw, 3.3125rem);
+  width: 2.4rem;
   height: 3px;
   background-color: ${({ theme }) => theme.title};
   border-radius: 4px;
   display: block;
-  margin-block: 10px;
+  margin-block: 8px;
   transition: 0.3s;
 `;

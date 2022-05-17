@@ -20,13 +20,13 @@ h1,h2,h3,h4,h5,h6,a{
 
 .toggle{
     :nth-child(1){
-        transform: translateY(13px) rotate(45deg);
+        transform: translateY(11px) rotate(45deg);
     }
      :nth-child(2){
         opacity: 0;
     }
      :nth-child(3){
-        transform: translateY(-13px) rotate(-45deg);
+        transform: translateY(-11px) rotate(-45deg);
     }
 }
 
