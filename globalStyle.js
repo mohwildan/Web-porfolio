@@ -4,7 +4,7 @@ import "@fontsource/roboto-mono";
 const GlobalStyle = createGlobalStyle`
 
 body{
-    background: ${({ theme }) => theme.body};
+    background: ${({ theme }) => theme.bac};
 }
 
 *{

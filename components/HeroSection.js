@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {keyframes} from "styled-components"
 function HeroSection() {
   return (
     <Section>
@@ -60,7 +61,7 @@ const HeroText = styled.h1`
     transform: rotate(-34.49deg);
     width: 18rem;
     height: 2rem;
-    background:#838446;
+    background: ${({ theme }) => theme.yello};;
     border-radius: 100% 0% 100% 0%;
   }
 
@@ -79,23 +80,39 @@ const HeroList = styled.h2`
   color: ${({ theme }) => theme.title};
   font-weight: 400;
   font-size: clamp(1rem, 0.6429rem + 1.1429vw, 1.5rem);
-  opacity: ${(props) => props.strip && ".8"};
+  opacity: ${(props) => props.strip && ".6"};
   font-weight: 300;
 `;
+const BtnAnimations = keyframes`
+to{
+    transform: scaleX(1);
+}
+`
 const HeroButton = styled.button`
   padding: 0.8rem 2.8rem;
   font-size: clamp(0.75rem, 0.5714rem + 0.5714vw, 1rem);
-  background-color: transparent;
+  background-color: #dbde3d;
   outline: none;
-  border: 2px solid ${({ theme }) => theme.title};
-  color: ${({ theme }) => theme.title};
+  color: #000;
+  border: none;
   cursor: pointer;
   transition: 0.3s;
   position: relative;
+  
 
-  &:hover {
-    background-color: ${({ theme }) => theme.title};
-    color: ${({ theme }) => theme.wow};
-    
+  &::before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      transform: scaleX(0);
+      background: #ffffff55;
+  }
+
+ 
+  &:active::before{
+     animation: ${BtnAnimations} 200ms infinite cubic-bezier(0.23, 1, 0.32, 1) ;
   }
 `;
+

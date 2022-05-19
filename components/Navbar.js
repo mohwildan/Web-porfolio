@@ -2,10 +2,11 @@ import { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import Link from "next/link";
 import styled from "styled-components";
+import { BsMoon, BsSun } from "react-icons/bs";
 function Navbar() {
   const [click, setClick] = useState(false);
 
-  const closeMenuMobile = () => setClick(false)
+  const closeMenuMobile = () => setClick(false);
   const context = useContext(AppContext);
   return (
     <NavHeader>
@@ -37,6 +38,13 @@ function Navbar() {
             </Link>
           </NavList>
         </NavMenu>
+        <NavTheme
+          onClick={() =>
+            context.setTheme(context.theme === "dark" ? "white" : "dark")
+          }
+        >
+          {context.theme === "dark" ? <BsMoon /> : <BsSun /> }
+        </NavTheme>
         <NavToggle onClick={() => setClick(!click)}>
           <NavToggleList className={click && "toggle"}></NavToggleList>
           <NavToggleList className={click && "toggle"}></NavToggleList>
@@ -116,8 +124,8 @@ const NavItem = styled.a`
     opacity: 1;
   }
 
-  &::after{
-      content: "";
+  &::after {
+    content: "";
     position: absolute;
     width: 0%;
     height: 3px;
@@ -127,9 +135,9 @@ const NavItem = styled.a`
     transition: 0.3s;
   }
 
-  &:hover::after{
-      width: 100%;
-      left: 0;
+  &:hover::after {
+    width: 100%;
+    left: 0;
   }
 
   @media (max-width: 768px) {
@@ -151,4 +159,13 @@ const NavToggleList = styled.div`
   display: block;
   margin-block: 8px;
   transition: 0.3s;
+`;
+const NavTheme = styled.div`
+  color: ${({ theme }) => theme.title};
+  font-size: 1.8rem;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+
+
 `;
