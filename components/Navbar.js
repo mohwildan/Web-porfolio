@@ -23,8 +23,8 @@ function Navbar() {
             </Link>
           </NavList>
           <NavList onClick={closeMenuMobile}>
-            <Link href="/AboutMe">
-              <NavItem>About</NavItem>
+            <Link href="/resume">
+              <NavItem>Resume</NavItem>
             </Link>
           </NavList>
           <NavList onClick={closeMenuMobile}>
@@ -66,6 +66,7 @@ const NavHeader = styled.div`
   z-index: 1000;
   display: flex;
   align-items: center;
+  /* background: ${({ theme }) => theme.body};; */
 `;
 const NavContainer = styled.div`
   position: relative;
@@ -166,6 +167,4 @@ const NavTheme = styled.div`
   cursor: pointer;
   position: relative;
   user-select: none;
-
-
 `;
